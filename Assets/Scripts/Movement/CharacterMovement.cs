@@ -1,10 +1,10 @@
-using System;
+using Mirror;
 using UnityEngine;
 
 namespace Movement
 {
     [RequireComponent(typeof(Rigidbody))]
-    public class CharacterMovement : MonoBehaviour
+    public class CharacterMovement : NetworkBehaviour
     {
         [SerializeField] private float _baseSpeed = 5;
         [SerializeField] private Transform _mesh;
@@ -21,6 +21,7 @@ namespace Movement
 
         protected void Update()
         {
+            if (!isLocalPlayer) return;
             var character = transform;
             _movementVector = character.right * Input.GetAxis("Horizontal") + Input.GetAxis("Vertical") * character.forward;
             if (_movementVector.magnitude == 0) return;

@@ -1,10 +1,10 @@
-using System;
+using Mirror;
 using Movement;
 using UnityEngine;
 
 namespace Animation
 {
-    public class PlayerAnimations : MonoBehaviour
+    public class PlayerAnimations : NetworkBehaviour
     {
         [SerializeField] private Transform _playerMesh;
 
@@ -27,6 +27,7 @@ namespace Animation
 
         private void Update()
         {
+            if (!isLocalPlayer) return;
             if (_animator is null) return;
             if (Input.GetAxis("Horizontal") != 0 || Input.GetAxis("Vertical") != 0)
             {

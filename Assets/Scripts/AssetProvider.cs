@@ -16,12 +16,6 @@ public class AssetProvider : MonoBehaviour
         await LoadSceneSingle("PrivateRoom");
     }
 
-    public static async Task LoadSceneAdditive(string sceneId)
-    {
-        var op = Addressables.LoadSceneAsync(sceneId, LoadSceneMode.Additive);
-        await op.Task;
-    }
-    
     public static async Task LoadSceneSingle(string sceneId)
     {
         var op = Addressables.LoadSceneAsync(sceneId);

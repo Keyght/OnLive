@@ -7,13 +7,9 @@ public class ButtonToNextScene : MonoBehaviour
     private async void OnTriggerStay(Collider other)
     {
         if (!other.gameObject.CompareTag("Player")) return;
-        if (!_first)
+        if (Input.GetKeyDown(KeyCode.F) && !_first)
         {
             _first = true;
-            await AssetProvider.LoadSceneAdditive("Hub");
-        }
-        if (Input.GetKeyDown(KeyCode.F))
-        {
             await AssetProvider.LoadSceneSingle("Hub");
         }
     }
