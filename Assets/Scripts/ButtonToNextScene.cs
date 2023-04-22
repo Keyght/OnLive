@@ -1,18 +1,20 @@
-using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
 
 public class ButtonToNextScene : MonoBehaviour
 {
-    // Start is called before the first frame update
-    void Start()
-    {
-        
-    }
+    private bool _first;
 
-    // Update is called once per frame
-    void Update()
+    private async void OnTriggerStay(Collider other)
     {
-        
+        if (!other.gameObject.CompareTag("Player")) return;
+        if (!_first)
+        {
+            _first = true;
+            await AssetProvider.LoadSceneAdditive("Hub");
+        }
+        if (Input.GetKeyDown(KeyCode.F))
+        {
+            await AssetProvider.LoadSceneSingle("Hub");
+        }
     }
 }

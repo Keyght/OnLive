@@ -14,6 +14,11 @@ namespace Animation
         private static readonly int _walk = Animator.StringToHash("Walk");
         private static readonly int _action = Animator.StringToHash("Action");
 
+        private void Awake()
+        {
+            DontDestroyOnLoad(this);
+        }
+        
         private void Start()
         {
             _movement = GetComponent<CharacterMovement>();
