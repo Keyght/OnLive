@@ -6,7 +6,7 @@ namespace Buttons
 {
     public class Toggle : NetworkBehaviour
     {
-        [SyncVar] private bool _state;
+        private bool _state;
         private bool _first;
         
         private async void OnTriggerStay(Collider other)
@@ -16,20 +16,30 @@ namespace Buttons
             if (Input.GetKeyDown(KeyCode.F) && !_first)
             {
                 _first = true;
-                await Task.Delay(1500);
-                Rotate();
+                await Task.Delay(1000);
+                CmdChangeState(!_state);
+                _first = false;
             }
         }
 
-        private void Rotate()
+        [Command(requiresAuthority=false)]
+        private void CmdChangeState(bool state)
         {
-            _state = !_state;
-            _first = false;
+            RpcChangeState(state);
+            Rotate(state);
+            
         }
-        
-        private void Update()
+        [ClientRpc]
+        private void RpcChangeState(bool state)
         {
-            transform.rotation = _state ? Quaternion.Euler(-135, -90, 90) : Quaternion.Euler(-45, -90, 90);
+            Rotate(state);
+        }
+
+        private void Rotate(bool state)
+        {
+            _state = state;
+            var rotation = _state ? Quaternion.Euler(-135, -90, 90) : Quaternion.Euler(-45, -90, 90);
+            transform.localRotation = rotation;
         }
     }
 }
