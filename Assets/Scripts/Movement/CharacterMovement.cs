@@ -36,11 +36,11 @@ namespace Movement
 
         public void Run()
         {
-            _movementSpeed = _baseSpeed * 2;
+            if (_movementSpeed < _baseSpeed * 2) _movementSpeed += Time.deltaTime;
         }
         public void Walk()
         {
-            _movementSpeed = _baseSpeed;
+            if (_movementSpeed > _baseSpeed) _movementSpeed -= Time.deltaTime;
         }
     }
 }

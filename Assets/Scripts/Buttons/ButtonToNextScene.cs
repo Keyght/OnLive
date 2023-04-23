@@ -1,10 +1,21 @@
+using System.Threading.Tasks;
+using UnityEngine;
+
 namespace Buttons
 {
-    public class ButtonToNextScene : BaseButtonPlayerPerform
+    public class ButtonToNextScene : MonoBehaviour
     {
-        protected override async void PerformAction()
+        private bool _first;
+
+        private async void OnTriggerStay(Collider other)
         {
-            await AssetProvider.LoadSceneSingle("Hub");
+            if (!other.gameObject.CompareTag("Player")) return;
+            if (Input.GetKeyDown(KeyCode.F) && !_first)
+            {
+                _first = true;
+                await Task.Delay(1500);
+                await AssetProvider.LoadSceneSingle("PrivateRoom");
+            }
         }
     }
 }

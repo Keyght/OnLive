@@ -2,7 +2,6 @@
   <assembly fullname="Assembly-CSharp, Version=0.0.0.0, Culture=neutral, PublicKeyToken=null">
     <type fullname="Buttons.ButtonToNextScene" preserve="all" />
     <type fullname="Buttons.Toggle" preserve="all" />
-    <type fullname="CreateToggler" preserve="all" />
     <type fullname="MirrorReflection" preserve="all" />
   </assembly>
   <assembly fullname="Mirror, Version=0.0.0.0, Culture=neutral, PublicKeyToken=null">
@@ -10,7 +9,7 @@
     <type fullname="Mirror.NetworkStartPosition" preserve="all" />
   </assembly>
   <assembly fullname="Mirror.Components, Version=0.0.0.0, Culture=neutral, PublicKeyToken=null">
-    <type fullname="Mirror.NetworkTransformReliable" preserve="all" />
+    <type fullname="Mirror.NetworkTransform" preserve="all" />
   </assembly>
   <assembly fullname="Unity.Addressables, Version=0.0.0.0, Culture=neutral, PublicKeyToken=null" preserve="all">
     <type fullname="UnityEngine.AddressableAssets.Addressables" preserve="all" />
@@ -43,7 +42,6 @@
   </assembly>
   <assembly fullname="UnityEngine.PhysicsModule, Version=0.0.0.0, Culture=neutral, PublicKeyToken=null">
     <type fullname="UnityEngine.BoxCollider" preserve="all" />
-    <type fullname="UnityEngine.CapsuleCollider" preserve="all" />
     <type fullname="UnityEngine.MeshCollider" preserve="all" />
     <type fullname="UnityEngine.SphereCollider" preserve="all" />
   </assembly>

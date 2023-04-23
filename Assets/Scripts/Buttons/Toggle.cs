@@ -1,25 +1,35 @@
+using System.Threading.Tasks;
+using Mirror;
 using UnityEngine;
 
 namespace Buttons
 {
-    public class Toggle : BaseButtonPlayerPerform
+    public class Toggle : NetworkBehaviour
     {
-        [SerializeField] private Transform _cylinder;
-
-        private bool _state;
+        [SyncVar] private bool _state;
+        private bool _first;
         
-        protected override void PerformAction()
+        private async void OnTriggerStay(Collider other)
         {
-            Rotate();
+            if (!isClient) return;
+            if (!other.gameObject.CompareTag("Player")) return;
+            if (Input.GetKeyDown(KeyCode.F) && !_first)
+            {
+                _first = true;
+                await Task.Delay(1500);
+                Rotate();
+            }
         }
 
         private void Rotate()
         {
-            float rotation;
-            if (_state) rotation = -90;
-            else rotation = 90;
-            _cylinder.Rotate(0, rotation, 0);
             _state = !_state;
+            _first = false;
+        }
+        
+        private void Update()
+        {
+            transform.rotation = _state ? Quaternion.Euler(-135, -90, 90) : Quaternion.Euler(-45, -90, 90);
         }
     }
 }

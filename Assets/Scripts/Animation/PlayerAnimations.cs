@@ -13,7 +13,8 @@ namespace Animation
         private static readonly int _run = Animator.StringToHash("Run");
         private static readonly int _walk = Animator.StringToHash("Walk");
         private static readonly int _action = Animator.StringToHash("Action");
-        
+        private static readonly int _blend = Animator.StringToHash("Blend");
+
         private void Start()
         {
             _movement = GetComponent<CharacterMovement>();
@@ -32,12 +33,16 @@ namespace Animation
                     _movement.Run();
                     _animator.SetBool(_run, true);
                     _animator.SetBool(_walk, false);
+                    var blendVal = _animator.GetFloat(_blend);
+                    if (blendVal < 1) _animator.SetFloat(_blend, blendVal + Time.deltaTime);
                 }
                 else
                 {
                     _movement.Walk();
                     _animator.SetBool(_run, false);
                     _animator.SetBool(_walk, true);
+                    var blendVal = _animator.GetFloat(_blend);
+                    if (blendVal > 0) _animator.SetFloat(_blend, blendVal - Time.deltaTime);
                 }
             }
             else
