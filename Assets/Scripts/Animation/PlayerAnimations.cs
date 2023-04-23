@@ -4,6 +4,9 @@ using UnityEngine;
 
 namespace Animation
 {
+    /// <summary>
+    /// Class to control player animations
+    /// </summary>
     public class PlayerAnimations : NetworkBehaviour
     {
         [SerializeField] private Transform _playerMesh;

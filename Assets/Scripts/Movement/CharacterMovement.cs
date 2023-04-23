@@ -3,6 +3,9 @@ using UnityEngine;
 
 namespace Movement
 {
+    /// <summary>
+    /// Class for player movement
+    /// </summary>
     [RequireComponent(typeof(Rigidbody))]
     public class CharacterMovement : NetworkBehaviour
     {
@@ -40,7 +43,7 @@ namespace Movement
         }
         public void Walk()
         {
-            if (_movementSpeed > _baseSpeed) _movementSpeed -= Time.deltaTime;
+            if (_movementSpeed > _baseSpeed) _movementSpeed -= 2* Time.deltaTime;
         }
     }
 }

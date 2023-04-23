@@ -3,8 +3,12 @@ using UnityEngine;
 
 namespace Buttons
 {
+    /// <summary>
+    /// Class for navigation between scenes buttons
+    /// </summary>
     public class ButtonToNextScene : MonoBehaviour
     {
+        [SerializeField] private string _sceneName;
         private bool _first;
 
         private async void OnTriggerStay(Collider other)
@@ -14,7 +18,7 @@ namespace Buttons
             {
                 _first = true;
                 await Task.Delay(1500);
-                await AssetProvider.LoadSceneSingle("PrivateRoom");
+                await AssetProvider.LoadSceneSingle(_sceneName);
             }
         }
     }

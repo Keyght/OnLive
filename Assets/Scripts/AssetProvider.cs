@@ -1,8 +1,10 @@
 using System.Threading.Tasks;
-using Network;
 using UnityEngine;
 using UnityEngine.AddressableAssets;
 
+/// <summary>
+/// Class for loading Addressables
+/// </summary>
 public class AssetProvider : MonoBehaviour
 {
     private void Awake()
@@ -19,6 +21,5 @@ public class AssetProvider : MonoBehaviour
     {
         var op = Addressables.LoadSceneAsync(sceneId);
         await op.Task;
-        NetMan.singleton.OnServerChangeScene(sceneId);
     }
 }

@@ -3,7 +3,10 @@ using UnityEngine;
 
 namespace Movement
 {
-    public class CatchCamera : NetworkBehaviour
+    /// <summary>
+    /// Class for player rotation
+    /// </summary>
+    public class CharacterRotation : NetworkBehaviour
     {
         [SerializeField] private float _sensivity = 1.2f;
         [SerializeField] private float _smooth = 10;
@@ -15,10 +18,8 @@ namespace Movement
         private void Start()
         {
             if (!isLocalPlayer) return;
-            Cursor.visible = false;
-            Cursor.lockState = CursorLockMode.Locked;
-            var maincam = Camera.main;
-            maincam.transform.SetParent(_cameraTransform);
+            var mainCam = Camera.main;
+            if (mainCam != null) mainCam.transform.SetParent(_cameraTransform);
         }
     
 

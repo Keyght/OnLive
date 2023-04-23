@@ -4,6 +4,9 @@ using UnityEngine;
 
 namespace Buttons
 {
+    /// <summary>
+    /// Class for toggling toggler
+    /// </summary>
     public class Toggle : NetworkBehaviour
     {
         private bool _state;
@@ -11,14 +14,16 @@ namespace Buttons
         
         private async void OnTriggerStay(Collider other)
         {
-            if (!isClient) return;
             if (!other.gameObject.CompareTag("Player")) return;
-            if (Input.GetKeyDown(KeyCode.F) && !_first)
+            if (Input.GetKeyDown(KeyCode.F))
             {
-                _first = true;
-                await Task.Delay(1000);
-                CmdChangeState(!_state);
-                _first = false;
+                if (other.GetComponentInParent<NetworkIdentity>().assetId == NetworkClient.localPlayer.assetId && !_first)
+                {
+                    _first = true;
+                    await Task.Delay(1000);
+                    CmdChangeState(!_state);
+                    _first = false;
+                }
             }
         }
 
