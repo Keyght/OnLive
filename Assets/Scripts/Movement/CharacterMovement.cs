@@ -6,12 +6,17 @@ namespace Movement
     [RequireComponent(typeof(Rigidbody))]
     public class CharacterMovement : NetworkBehaviour
     {
-        [SerializeField] private float _baseSpeed = 5;
+        [SerializeField] private float _baseSpeed = 3;
         [SerializeField] private Transform _mesh;
 
         private float _movementSpeed;
         private Vector3 _movementVector;
         private Rigidbody _rigidbody;
+        
+        private void Awake()
+        {
+            DontDestroyOnLoad(this);
+        }
 
         private void Start()
         {
@@ -31,7 +36,7 @@ namespace Movement
 
         public void Run()
         {
-            _movementSpeed = _baseSpeed * 3;
+            _movementSpeed = _baseSpeed * 2;
         }
         public void Walk()
         {

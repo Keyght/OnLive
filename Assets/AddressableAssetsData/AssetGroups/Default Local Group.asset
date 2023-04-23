@@ -16,7 +16,11 @@ MonoBehaviour:
   m_Data:
     m_SerializedData: []
   m_GUID: 361ba112a57bfc849824b3333856ef41
-  m_SerializeEntries: []
+  m_SerializeEntries:
+  - m_GUID: dccd9b55186e35b48be3c74421d03e44
+    m_Address: Toggler
+    m_ReadOnly: 0
+    m_SerializedLabels: []
   m_ReadOnly: 0
   m_Settings: {fileID: 11400000, guid: b3c7a647880fda7499cea4a472a0beae, type: 2}
   m_SchemaSet:
